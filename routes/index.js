@@ -1,8 +1,14 @@
-const router = require('express').Router();
+const { Url } = require("../models/url");
+
+const router = require("express").Router();
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-    res.render('index', { title: 'Express' });
+router.get("/", async function (req, res, next) {
+  const urls = await Url.find();
+  console.log(urls);
+  res.render("index", { title: "Express", data: urls });
 });
+
+/* POST home page. */
 
 module.exports = router;
